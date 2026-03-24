@@ -119,3 +119,9 @@ HibouEngine/
 ├── HibouEngine.sharpmake.cs  Build configuration
 └── GenerateProjects.bat      Regenerates VS solution and project files
 ```
+
+## How I use AI in this project?
+
+In this project, I am using [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios) as an AI tool. The focus is on guiding the project's development and keeping a more professional approach. I am not a fan of the "Vibe Coding" idea. I believe AI is a tool that should assist us in the development process, not replace us. When you have the technical knowledge about what you want to build, AI becomes a truly powerful tool in our hands.
+
+Currently, I am also working on my own multi-agent pipeline. Keep an eye on [my website](https://ewerton.xyz) or [my LinkedIn](https://linkedin.com/in/ewertonxyz), as I will post more about this in the future.
