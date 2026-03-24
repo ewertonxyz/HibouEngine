@@ -1,0 +1,31 @@
+# Build outputs
+Engine/obj/
+Engine/x64/
+Engine/vcpkg_installed/
+Editor/output/
+Editor/bin/
+Editor/obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.aps
+
+# JetBrains
+.idea/
+
+# VS Code
+.vscode/
+
+# Claude
+.claude/
+CLAUDE.md
+
+# NuGet
+packages/
+*.nupkg
+
+# OS
+.DS_Store
+Thumbs.db

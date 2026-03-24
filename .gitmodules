@@ -1,0 +1,15 @@
+[submodule "Engine/vendor/stb"]
+	path = Engine/vendor/stb
+	url = https://github.com/nothings/stb.git
+[submodule "Engine/vendor/TinyEXR"]
+	path = Engine/vendor/TinyEXR
+	url = https://github.com/syoyo/tinyexr.git
+[submodule "Engine/vendor/EASTL"]
+	path = Engine/vendor/EASTL
+	url = https://github.com/electronicarts/EASTL.git
+[submodule "Tools/Sharpmake"]
+	path = Tools/Sharpmake
+	url = https://github.com/ubisoft/Sharpmake.git
+[submodule "Engine/vendor/EABase"]
+	path = Engine/vendor/EABase
+	url = https://github.com/electronicarts/EABase.git

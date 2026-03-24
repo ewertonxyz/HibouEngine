@@ -1,0 +1,13 @@
+{
+  "name": "hibou-engine",
+  "version-string": "0.1.0",
+  "dependencies": [
+    "glm",
+    "fmt",
+    "nlohmann-json",
+    "sdl3",
+    "entt",
+    "glad",
+    "tinygltf"
+  ]
+}

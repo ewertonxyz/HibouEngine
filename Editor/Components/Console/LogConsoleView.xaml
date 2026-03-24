@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Editor.Components.Console.LogConsoleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="{StaticResource BrushBackgroundLight}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBox x:Name="LogOutput" 
+                 Grid.Row="1" 
+                 IsReadOnly="True" 
+                 Background="Transparent" 
+                 Foreground="#AAA" 
+                 BorderThickness="0" 
+                 FontFamily="Consolas"
+                 TextWrapping="Wrap"
+                 VerticalScrollBarVisibility="Auto"
+                 Text="Welcome to Hibou Engine&#x0a;"/>
+    </Grid>
+</UserControl>

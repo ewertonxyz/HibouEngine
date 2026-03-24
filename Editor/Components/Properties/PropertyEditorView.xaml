@@ -1,0 +1,392 @@
+<UserControl x:Class="Editor.Components.Properties.PropertyEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Background="{StaticResource BrushBackgroundLight}">
+
+        <!-- No selection state -->
+        <TextBlock x:Name="NoSelectionText"
+                   Text="No Selection"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Foreground="#555" FontSize="12"/>
+
+        <!-- Asset Properties panel — visible once an asset is selected -->
+        <ScrollViewer x:Name="AssetPropertiesScroll"
+                      Visibility="Collapsed"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+            <StackPanel>
+
+                <!-- ── Asset header ─────────────────────────────── -->
+                <Border Background="{StaticResource BrushBackgroundDark}" Padding="10,8">
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="20" Height="20" CornerRadius="4"
+                                Background="{Binding IconBackground}"
+                                Margin="0,0,8,0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding TypeLabel}"
+                                       FontSize="10" FontWeight="Bold" Foreground="White"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Name}"
+                                       FontSize="13" FontWeight="SemiBold"
+                                       Foreground="{StaticResource BrushText}"/>
+                            <TextBlock Text="{Binding TypeLabel}"
+                                       FontSize="10" Foreground="#888" Margin="0,1,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- ── File Info section ─────────────────────────── -->
+                <Border Background="#222226"
+                        BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1"
+                        Padding="10,5">
+                    <TextBlock Text="File Info" FontSize="10" FontWeight="SemiBold"
+                               Foreground="#999" VerticalAlignment="Center"/>
+                </Border>
+                <Border Padding="12,8,10,10"
+                        BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="22"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Size"
+                                   FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1"
+                                   Text="{Binding FileSizeMB, StringFormat={}{0:F2} MB}"
+                                   FontSize="11" Foreground="{StaticResource BrushText}" VerticalAlignment="Center"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Abs. Path"
+                                   FontSize="11" Foreground="#888" VerticalAlignment="Top" Margin="0,2,0,0"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1"
+                                   Text="{Binding FullPath}"
+                                   FontSize="10" Foreground="#888"
+                                   TextWrapping="Wrap" Margin="0,2,0,0"/>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Rel. Path"
+                                   FontSize="11" Foreground="#888" VerticalAlignment="Top" Margin="0,2,0,0"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1"
+                                   Text="{Binding RelativePath}"
+                                   FontSize="10" Foreground="#888"
+                                   TextWrapping="Wrap" Margin="0,2,0,0"/>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Asset ID"
+                                   FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1"
+                                   Text="{Binding AssetId}"
+                                   FontSize="11" Foreground="{StaticResource BrushText}" VerticalAlignment="Center"/>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Type"
+                                   FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1"
+                                   Text="{Binding TypeLabel}"
+                                   FontSize="11" Foreground="{StaticResource BrushText}" VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- ── Image section (IsImage == True) ──────────── -->
+                <StackPanel Visibility="{Binding ImageSectionVisibility}">
+                    <Border Background="#222226"
+                            BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1"
+                            Padding="10,5">
+                        <TextBlock Text="Image" FontSize="10" FontWeight="SemiBold"
+                                   Foreground="#999" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Padding="12,8,10,10"
+                            BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="22"/>
+                                <RowDefinition Height="22"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Resolution"
+                                       FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding ImageWidth}"  FontSize="11" Foreground="{StaticResource BrushText}"/>
+                                <TextBlock Text=" × "                   FontSize="11" Foreground="#888"/>
+                                <TextBlock Text="{Binding ImageHeight}" FontSize="11" Foreground="{StaticResource BrushText}"/>
+                            </StackPanel>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Compression"
+                                       FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1"
+                                       Text="{Binding CompressionLabel}"
+                                       FontSize="11" Foreground="{StaticResource BrushText}" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+
+                <!-- ── Folder section (IsDirectory == True) ─────── -->
+                <StackPanel Visibility="{Binding FolderSectionVisibility}">
+                    <Border Background="#222226"
+                            BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1"
+                            Padding="10,5">
+                        <TextBlock Text="Folder" FontSize="10" FontWeight="SemiBold"
+                                   Foreground="#999" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Padding="12,8,10,10"
+                            BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="22"/>
+                                <RowDefinition Height="22"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Files"
+                                       FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding FileCount}"
+                                       FontSize="11" Foreground="{StaticResource BrushText}" VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Total Size"
+                                       FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1"
+                                       Text="{Binding TotalSizeMB, StringFormat={}{0:F2} MB}"
+                                       FontSize="11" Foreground="{StaticResource BrushText}" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+
+                <!-- ── 3D Model section (IsGltf == True) ────────── -->
+                <StackPanel Visibility="{Binding GltfSectionVisibility}">
+                    <Border Background="#222226"
+                            BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1"
+                            Padding="10,5">
+                        <TextBlock Text="3D Model" FontSize="10" FontWeight="SemiBold"
+                                   Foreground="#999" VerticalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Properties panel — visible once an entity is selected -->
+        <ScrollViewer x:Name="PropertiesScroll"
+                      Visibility="Collapsed"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+            <StackPanel>
+
+                <!-- ── Entity header ─────────────────────────────── -->
+                <Border Background="{StaticResource BrushBackgroundDark}" Padding="10,8">
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="20" Height="20" CornerRadius="4"
+                                Background="{Binding TypeBadgeBrush}"
+                                Margin="0,0,8,0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding TypeIcon}"
+                                       FontSize="10" FontWeight="Bold" Foreground="White"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Name}"
+                                       FontSize="13" FontWeight="SemiBold"
+                                       Foreground="{StaticResource BrushText}"/>
+                            <TextBlock Text="{Binding TypeLabel}"
+                                       FontSize="10" Foreground="#888" Margin="0,1,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- ── Transform section ─────────────────────────── -->
+                <Border Background="#222226"
+                        BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1"
+                        Padding="10,5">
+                    <TextBlock Text="Transform" FontSize="10" FontWeight="SemiBold"
+                               Foreground="#999" VerticalAlignment="Center"/>
+                </Border>
+                <Border Padding="12,8,10,10"
+                        BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="22"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="58"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Position -->
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Position"
+                                   FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="X" Width="14" FontSize="10" Foreground="#CC5555" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding PosX, StringFormat={}{0:F3}}" FontSize="11"
+                                       Foreground="{StaticResource BrushText}" Width="54" VerticalAlignment="Center"/>
+                            <TextBlock Text="Y" Width="14" FontSize="10" Foreground="#55CC55" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding PosY, StringFormat={}{0:F3}}" FontSize="11"
+                                       Foreground="{StaticResource BrushText}" Width="54" VerticalAlignment="Center"/>
+                            <TextBlock Text="Z" Width="14" FontSize="10" Foreground="#5588CC" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding PosZ, StringFormat={}{0:F3}}" FontSize="11"
+                                       Foreground="{StaticResource BrushText}" Width="54" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!-- Rotation -->
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Rotation"
+                                   FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="X" Width="14" FontSize="10" Foreground="#CC5555" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding RotX, StringFormat={}{0:F2}}" FontSize="11"
+                                       Foreground="{StaticResource BrushText}" Width="54" VerticalAlignment="Center"/>
+                            <TextBlock Text="Y" Width="14" FontSize="10" Foreground="#55CC55" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding RotY, StringFormat={}{0:F2}}" FontSize="11"
+                                       Foreground="{StaticResource BrushText}" Width="54" VerticalAlignment="Center"/>
+                            <TextBlock Text="Z" Width="14" FontSize="10" Foreground="#5588CC" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding RotZ, StringFormat={}{0:F2}}" FontSize="11"
+                                       Foreground="{StaticResource BrushText}" Width="54" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!-- Scale -->
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Scale"
+                                   FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="X" Width="14" FontSize="10" Foreground="#CC5555" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding ScaleX, StringFormat={}{0:F3}}" FontSize="11"
+                                       Foreground="{StaticResource BrushText}" Width="54" VerticalAlignment="Center"/>
+                            <TextBlock Text="Y" Width="14" FontSize="10" Foreground="#55CC55" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding ScaleY, StringFormat={}{0:F3}}" FontSize="11"
+                                       Foreground="{StaticResource BrushText}" Width="54" VerticalAlignment="Center"/>
+                            <TextBlock Text="Z" Width="14" FontSize="10" Foreground="#5588CC" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding ScaleZ, StringFormat={}{0:F3}}" FontSize="11"
+                                       Foreground="{StaticResource BrushText}" Width="54" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- ── Camera section ────────────────────────────── -->
+                <StackPanel Visibility="{Binding CameraVisibility}">
+                    <Border Background="#222226"
+                            BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1"
+                            Padding="10,5">
+                        <TextBlock Text="Camera" FontSize="10" FontWeight="SemiBold"
+                                   Foreground="#999"/>
+                    </Border>
+                    <Border Padding="12,8,10,10"
+                            BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="22"/>
+                                <RowDefinition Height="22"/>
+                                <RowDefinition Height="22"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="58"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="FOV"  FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" FontSize="11" Foreground="{StaticResource BrushText}" VerticalAlignment="Center">
+                                <Run Text="{Binding FovDeg, StringFormat={}{0:F1}}"/><Run Text="°"/>
+                            </TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Near" FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Near, StringFormat={}{0:F4}}"
+                                       FontSize="11" Foreground="{StaticResource BrushText}" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Far"  FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Far, StringFormat={}{0:F0}}"
+                                       FontSize="11" Foreground="{StaticResource BrushText}" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+
+                <!-- ── Directional Light section ─────────────────── -->
+                <StackPanel Visibility="{Binding LightVisibility}">
+                    <Border Background="#222226"
+                            BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1"
+                            Padding="10,5">
+                        <TextBlock Text="Directional Light" FontSize="10" FontWeight="SemiBold"
+                                   Foreground="#999"/>
+                    </Border>
+                    <Border Padding="12,8,10,10"
+                            BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="22"/>
+                                <RowDefinition Height="22"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="58"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Color"
+                                       FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="R" Width="14" FontSize="10" Foreground="#CC5555" FontWeight="Bold" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding LightR, StringFormat={}{0:F2}}" FontSize="11"
+                                           Foreground="{StaticResource BrushText}" Width="44" VerticalAlignment="Center"/>
+                                <TextBlock Text="G" Width="14" FontSize="10" Foreground="#55CC55" FontWeight="Bold" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding LightG, StringFormat={}{0:F2}}" FontSize="11"
+                                           Foreground="{StaticResource BrushText}" Width="44" VerticalAlignment="Center"/>
+                                <TextBlock Text="B" Width="14" FontSize="10" Foreground="#5588CC" FontWeight="Bold" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding LightB, StringFormat={}{0:F2}}" FontSize="11"
+                                           Foreground="{StaticResource BrushText}" Width="44" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Intensity"
+                                       FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding IntensityLux, StringFormat={}{0:F2}}"
+                                           FontSize="11" Foreground="{StaticResource BrushText}"/>
+                                <TextBlock Text=" lux" FontSize="11" Foreground="#888"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+
+                <!-- ── GLTF Model section ─────────────────────────── -->
+                <StackPanel Visibility="{Binding GltfVisibility}">
+                    <Border Background="#222226"
+                            BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1"
+                            Padding="10,5">
+                        <TextBlock Text="GLTF Model" FontSize="10" FontWeight="SemiBold"
+                                   Foreground="#999"/>
+                    </Border>
+                    <Border Padding="12,8,10,10"
+                            BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="22"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="58"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="File"
+                                       FontSize="11" Foreground="#888" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding GltfFileName}"
+                                       FontSize="11" Foreground="{StaticResource BrushText}"
+                                       VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Path"
+                                       FontSize="10" Foreground="#666" VerticalAlignment="Top" Margin="0,2,0,0"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1"
+                                       Text="{Binding GltfPath}"
+                                       FontSize="10" Foreground="#666"
+                                       TextWrapping="Wrap" Margin="0,2,0,0"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

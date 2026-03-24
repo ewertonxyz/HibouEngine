@@ -1,0 +1,28 @@
+﻿<MenuItem x:Class="Editor.Components.MenuBar.CreateMenuView"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          Header="Create">
+
+    <MenuItem Header="Standard Primitives" Foreground="Black">
+        <MenuItem Header="Cube" />
+        <MenuItem Header="Sphere" />
+        <MenuItem Header="Plane" />
+        <MenuItem Header="Cylinder" />
+    </MenuItem>
+
+    <MenuItem Header="Light" Foreground="Black">
+        <MenuItem Header="Directional" />
+        <MenuItem Header="Point" />
+        <MenuItem Header="Spot" />
+        <MenuItem Header="Area" />
+    </MenuItem>
+
+    <MenuItem Header="Camera" Foreground="Black">
+        <MenuItem Header="Perspective" />
+        <MenuItem Header="Orthographic" />
+    </MenuItem>
+    
+    <Separator/>
+
+    <MenuItem Header="Empty Actor" Foreground="Black" />
+</MenuItem>

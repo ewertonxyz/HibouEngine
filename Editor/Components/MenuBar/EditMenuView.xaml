@@ -1,0 +1,14 @@
+﻿<MenuItem x:Class="Editor.Components.MenuBar.EditMenuView"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          Header="Edit"
+          Margin="5,0,5,0">
+    <MenuItem Header="Undo" InputGestureText="Ctrl+Z" Foreground="Black" />
+    <MenuItem Header="Redo" InputGestureText="Ctrl+Y" Foreground="Black" />
+    <Separator Foreground="Gray"/>
+    <MenuItem Header="Cut" InputGestureText="Ctrl+X" Foreground="Black"/>
+    <MenuItem Header="Copy" InputGestureText="Ctrl+C" Foreground="Black"/>
+    <MenuItem Header="Paste" InputGestureText="Ctrl+V" Foreground="Black" />
+    <Separator Foreground="Gray" />
+    <MenuItem Header="Preferences" Foreground="Black"/>
+</MenuItem>

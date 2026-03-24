@@ -1,0 +1,15 @@
+﻿<MenuItem x:Class="Editor.Components.MenuBar.WindowMenuView"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          Header="Window" 
+          Margin="5,0,5,0">
+    <MenuItem Header="Reset Layout" Foreground="Black"/>
+    <MenuItem Header="Save Layout" Foreground="Black"/>
+    <MenuItem Header="Load Layout" Foreground="Black"/>
+    <Separator Foreground="Gray"/>
+    <MenuItem Header="Asset Browser" Foreground="Black"/>
+    <MenuItem Header="Console" Foreground="Black"/>
+    <MenuItem Header="Explorer" Foreground="Black"/>
+    <MenuItem Header="Properties" Foreground="Black"/>
+    <MenuItem Header="Viewport" Foreground="Black"/>
+</MenuItem>

@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Editor.Components.MenuBar.MenuBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Editor.Components.MenuBar">
+
+    <Menu Background="#1E1E1E"  Foreground="WhiteSmoke" BorderBrush="Black"  BorderThickness="0,0,0,1">
+        <Menu.ItemsPanel>
+            <ItemsPanelTemplate>
+                <DockPanel HorizontalAlignment="Left"/>
+            </ItemsPanelTemplate>
+        </Menu.ItemsPanel>
+
+        <local:FileMenuView />
+        <local:EditMenuView />
+        <local:CreateMenuView />
+        <local:WindowMenuView />
+        <local:HelpMenuView />
+    </Menu>
+</UserControl>

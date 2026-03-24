@@ -1,0 +1,21 @@
+﻿<MenuItem x:Class="Editor.Components.MenuBar.FileMenuView"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          Header="File"
+          Margin="5,0,5,0">
+    <MenuItem Header="New Project" Foreground="Black" />
+    <MenuItem Header="Open Project..." Foreground="Black" />
+    <MenuItem Header="Load Project..." Foreground="Black" />
+    <Separator Foreground="Gray" />
+    <MenuItem Header="New Level" Foreground="Black" />
+    <MenuItem Header="Open Level..." Foreground="Black" />
+    <Separator />
+    <MenuItem Header="Save Level" InputGestureText="Ctrl+S" Foreground="Black" />
+    <MenuItem Header="Save As..." Foreground="Black" />
+    <MenuItem Header="Save All" Foreground="Black" />
+    <Separator Foreground="Gray" />
+    <MenuItem Header="Import Asset..." Foreground="Black" />
+    <MenuItem Header="New Unit from Mesh..." Foreground="Black" />
+    <Separator Foreground="Gray" />
+    <MenuItem Header="Exit" Foreground="Black" />
+</MenuItem>

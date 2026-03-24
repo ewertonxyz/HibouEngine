@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="Editor.Components.Console.CommandEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="#111" Height="25">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="CMD >" Foreground="#0F0" VerticalAlignment="Center" Margin="5,0"/>
+        <TextBox Grid.Column="1" Background="Transparent" Foreground="#0F0" BorderThickness="0" VerticalAlignment="Center" CaretBrush="White"/>
+    </Grid>
+</UserControl>

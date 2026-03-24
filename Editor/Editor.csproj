@@ -1,0 +1,171 @@
+﻿<Project>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <PlatformTarget Condition=" '$(Platform)' == '' ">x64</PlatformTarget>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Editor</RootNamespace>
+    <AssemblyName>Editor</AssemblyName>
+    <TargetFramework>net472</TargetFramework>
+    <FileAlignment>512</FileAlignment>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>output\win64\debug</OutputPath>
+    <IntermediateOutputPath>obj\win64\debug</IntermediateOutputPath>
+    <DefineConstants>DEBUG;TRACE;WIN64</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Platforms>x64</Platforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>output\win64\release</OutputPath>
+    <IntermediateOutputPath>obj\win64\release</IntermediateOutputPath>
+    <DefineConstants>TRACE;WIN64</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Platforms>x64</Platforms>
+  </PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Components\AssetBrowser\AssetBrowserView.xaml.cs" />
+    <Compile Include="Components\AssetBrowser\AssetBrowserViewModel.cs" />
+    <Compile Include="Components\Console\CommandEditorView.xaml.cs" />
+    <Compile Include="Components\Console\LogConsoleView.xaml.cs" />
+    <Compile Include="Components\ContextBar\ContextToolbarView.xaml.cs" />
+    <Compile Include="Components\ContextBar\ContextToolbarViewModel.cs" />
+    <Compile Include="Components\Explorer\ExplorerView.xaml.cs" />
+    <Compile Include="Components\Explorer\SceneViewModel.cs" />
+    <Compile Include="Components\Graph\HaircardFactory\MainGraphView.xaml.cs" />
+    <Compile Include="Components\Lobby\LobbyView.xaml.cs" />
+    <Compile Include="Components\Lobby\SplashLoadingWindow.xaml.cs">
+      <DependentUpon>SplashLoadingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Lobby\LobbyWindow.xaml.cs">
+      <DependentUpon>LobbyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Properties\PropertyEditorView.xaml.cs" />
+    <Compile Include="Components\SideTools\VerticalToolBarView.xaml.cs" />
+    <Compile Include="Components\MenuBar\CreateMenuView.xaml.cs" />
+    <Compile Include="Components\MenuBar\EditMenuView.xaml.cs" />
+    <Compile Include="Components\MenuBar\FileMenuView.xaml.cs" />
+    <Compile Include="Components\MenuBar\HelpMenuView.xaml.cs" />
+    <Compile Include="Components\MenuBar\Help\AboutWindow.xaml.cs" />
+    <Compile Include="Components\MenuBar\MenuBarView.xaml.cs" />
+    <Compile Include="Components\MenuBar\WindowMenuView.xaml.cs" />
+    <Compile Include="Components\Viewport\OpenGL\OpenGLViewportView.xaml.cs" />
+    <Compile Include="Interfaces\IEngineComponent.cs" />
+    <Compile Include="Interop\EngineBindings.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Projects\HxLevel.cs" />
+    <Compile Include="Projects\HxProject.cs" />
+    <Compile Include="Projects\LevelLoader.cs" />
+    <Compile Include="Projects\ProjectContext.cs" />
+    <Compile Include="Projects\ProjectCreator.cs" />
+    <Compile Include="Projects\ProjectLoader.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\EditorViewModel.cs" />
+    <Compile Include="ViewModels\NodeViewModel.cs" />
+    <Compile Include="Views\OpenGLViewport.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="output\win64\debug\net10.0-windows\engine.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Components\AssetBrowser\AssetBrowserView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Console\CommandEditorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Console\LogConsoleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ContextBar\ContextToolbarView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Explorer\ExplorerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Graph\HaircardFactory\MainGraphView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Lobby\LobbyView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Lobby\SplashLoadingWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Lobby\LobbyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\Properties\PropertyEditorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\SideTools\VerticalToolBarView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\MenuBar\CreateMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\MenuBar\EditMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\MenuBar\FileMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\MenuBar\HelpMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\MenuBar\Help\AboutWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\MenuBar\MenuBarView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\MenuBar\WindowMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Viewport\OpenGL\OpenGLViewportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Nodify" Version="7.1.0" />
+  </ItemGroup>
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+</Project>

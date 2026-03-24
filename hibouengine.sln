@@ -1,0 +1,65 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11512.155 d18.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Editor", "Editor\Editor.csproj", "{A2C4E4C0-947F-E43B-DE0A-842A8876DF17}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9335B645-BF3E-67CE-BB46-3EB271E1778C} = {9335B645-BF3E-67CE-BB46-3EB271E1778C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\engine.vcxproj", "{9335B645-BF3E-67CE-BB46-3EB271E1778C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6D7DA090-7D6F-01FF-5872-08BD74672EA5}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.gitmodules = .gitmodules
+		Assets\Icons\close.png = Assets\Icons\close.png
+		Assets\Icons\controller.png = Assets\Icons\controller.png
+		Assets\Icons\folder1.png = Assets\Icons\folder1.png
+		Assets\Icons\folder2.png = Assets\Icons\folder2.png
+		Assets\Icons\folder3.png = Assets\Icons\folder3.png
+		Assets\Icons\folder4.png = Assets\Icons\folder4.png
+		Assets\Icons\folder5.png = Assets\Icons\folder5.png
+		Assets\Icons\folder6.png = Assets\Icons\folder6.png
+		GenerateProjects.bat = GenerateProjects.bat
+		Assets\Icons\gizmomove.png = Assets\Icons\gizmomove.png
+		Assets\Icons\gizmorotate.png = Assets\Icons\gizmorotate.png
+		Assets\Icons\gizmoscale.png = Assets\Icons\gizmoscale.png
+		Assets\Icons\gpu.png = Assets\Icons\gpu.png
+		HibouEngine.sharpmake.cs = HibouEngine.sharpmake.cs
+		Assets\Icons\localorientation.png = Assets\Icons\localorientation.png
+		Assets\Icons\logo.png = Assets\Icons\logo.png
+		Assets\Icons\maximize.png = Assets\Icons\maximize.png
+		Assets\Icons\minimize.png = Assets\Icons\minimize.png
+		Assets\Icons\navmesh.png = Assets\Icons\navmesh.png
+		Assets\Icons\pause.png = Assets\Icons\pause.png
+		Assets\Icons\play.png = Assets\Icons\play.png
+		Assets\Icons\simulate.png = Assets\Icons\simulate.png
+		Assets\Icons\stop.png = Assets\Icons\stop.png
+		Assets\Icons\terrain.png = Assets\Icons\terrain.png
+		Assets\Icons\terrainmodifier.png = Assets\Icons\terrainmodifier.png
+		Assets\Icons\worldorientation.png = Assets\Icons\worldorientation.png
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2C4E4C0-947F-E43B-DE0A-842A8876DF17}.Debug|x64.ActiveCfg = Debug|x64
+		{A2C4E4C0-947F-E43B-DE0A-842A8876DF17}.Debug|x64.Build.0 = Debug|x64
+		{A2C4E4C0-947F-E43B-DE0A-842A8876DF17}.Release|x64.ActiveCfg = Release|x64
+		{A2C4E4C0-947F-E43B-DE0A-842A8876DF17}.Release|x64.Build.0 = Release|x64
+		{9335B645-BF3E-67CE-BB46-3EB271E1778C}.Debug|x64.ActiveCfg = Debug|x64
+		{9335B645-BF3E-67CE-BB46-3EB271E1778C}.Debug|x64.Build.0 = Debug|x64
+		{9335B645-BF3E-67CE-BB46-3EB271E1778C}.Release|x64.ActiveCfg = Release|x64
+		{9335B645-BF3E-67CE-BB46-3EB271E1778C}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70B89FE7-C4D9-4DEF-A4DB-3492E680A7CB}
+	EndGlobalSection
+EndGlobal

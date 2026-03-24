@@ -1,0 +1,10 @@
+<Window x:Class="Editor.Components.Lobby.LobbyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:lobby="clr-namespace:Editor.Components.Lobby"
+        Title="Hibou Engine — Project Hub" Width="1100" Height="720"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        Background="#1E1E1E">
+    <lobby:LobbyView/>
+</Window>

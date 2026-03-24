@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Editor.Components.ContextBar.ContextToolbarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="40" 
+             Background="{StaticResource BrushBackgroundLight}" 
+             BorderBrush="{StaticResource BrushBorder}" 
+             BorderThickness="0,0,0,1">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ComboBox Grid.Column="0" 
+                  Margin="5" 
+                  ItemsSource="{Binding AvailableModes}" 
+                  SelectedItem="{Binding SelectedMode}"
+                  VerticalContentAlignment="Center"/>
+
+        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center" Visibility="{Binding EditModeVisibility}">
+            <Button Content="Vertex Paint"/>
+            <Button Content="Terrain Sculpt"/>
+            <Button Content="NavMesh"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center" Visibility="{Binding LevelEditorVisibility}">
+            <Button Width="48" Height="40" Margin="0" ToolTip="Move (W)" Background="Transparent" BorderThickness="2" BorderBrush="DarkGray">
+                <Image Source="/Assets/Icons/gizmomove.png" />
+            </Button>
+            <Button Width="48" Height="40" Margin="0" ToolTip="Rotate (E)" Background="Transparent" BorderThickness="2" BorderBrush="DarkGray">
+                <Image Source="/Assets/Icons/gizmorotate.png" />
+            </Button>
+            <Button Width="48" Height="40" Margin="0" ToolTip="Scale (R)" Background="Transparent" BorderThickness="2" BorderBrush="DarkGray">
+                <Image Source="/Assets/Icons/gizmoscale.png" />
+            </Button>
+
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="5,0"/>
+
+            <Button Width="48" Height="40" Margin="0" ToolTip="World Orientation" Background="Transparent" BorderThickness="2" BorderBrush="DarkGray">
+                <Image Source="/Assets/Icons/worldorientation.png" />
+            </Button>
+            <Button Width="48" Height="40" Margin="0" ToolTip="Local Orientation" Background="Transparent" BorderThickness="2" BorderBrush="DarkGray">
+                <Image Source="/Assets/Icons/localorientation.png" />
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
