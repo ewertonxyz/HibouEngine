@@ -247,6 +247,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Core\EnginePCH.h" />
+    <ClInclude Include="include\Core\Memory.h" />
     <ClInclude Include="include\Entities\Components.h" />
     <ClInclude Include="include\Entities\Entity.h" />
     <ClInclude Include="include\Entities\Scene.h" />
@@ -586,7 +587,7 @@
     <Natvis Include="vendor\EASTL\doc\EASTL.natvis" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Memory.cpp" />
+    <ClCompile Include="src\Core\Memory.cpp" />
     <ClCompile Include="src\Core\EnginePCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>

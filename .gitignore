@@ -21,6 +21,7 @@ Editor/obj/
 # Claude
 .claude/
 CLAUDE.md
+CLAUDE.local.md
 
 # NuGet
 packages/
@@ -29,3 +30,9 @@ packages/
 # OS
 .DS_Store
 Thumbs.db
+
+# production
+production/
+
+# Docs
+docs/

@@ -16,6 +16,9 @@
 #include <stdexcept>
 #include <cstdint>
 
+// Core engine systems — must precede any allocating third-party headers.
+#include "Memory.h"
+
 #include <glad/glad.h>
 #include <SDL3/SDL.h>
 #include <glm/glm.hpp>

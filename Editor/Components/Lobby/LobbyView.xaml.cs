@@ -21,8 +21,6 @@ namespace Editor.Components.Lobby
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        // ── Open-tab state ─────────────────────────────────────────────────────
-
         public ObservableCollection<ProjectCard> Projects { get; } = new();
 
         private ProjectCard? _selectedProject;
@@ -50,13 +48,9 @@ namespace Editor.Components.Lobby
         public string ProjectsRootPath { get; }
         public bool CanOpenSelected => SelectedProject != null;
 
-        // ── View switching ─────────────────────────────────────────────────────
-
         private bool _showNewProjectView;
         public Visibility ProjectsViewVisibility  => _showNewProjectView ? Visibility.Collapsed : Visibility.Visible;
         public Visibility NewProjectViewVisibility => _showNewProjectView ? Visibility.Visible   : Visibility.Collapsed;
-
-        // ── Create-tab state ───────────────────────────────────────────────────
 
         private string _createProjectName = string.Empty;
         public string CreateProjectName
@@ -80,7 +74,6 @@ namespace Editor.Components.Lobby
             set { if (_createProjectDescription != value) { _createProjectDescription = value; OnPropertyChanged(); } }
         }
 
-        // Logo
         private string _createLogoPath = string.Empty;
         private ImageSource? _createLogoPreview;
         private string _createLogoError = string.Empty;
@@ -109,7 +102,6 @@ namespace Editor.Components.Lobby
         public Visibility CreateLogoErrorVisibility =>
             string.IsNullOrEmpty(_createLogoError) ? Visibility.Collapsed : Visibility.Visible;
 
-        // Splash
         private string _createSplashPath = string.Empty;
         private ImageSource? _createSplashPreview;
         private string _createSplashError = string.Empty;
@@ -138,7 +130,6 @@ namespace Editor.Components.Lobby
         public Visibility CreateSplashErrorVisibility =>
             string.IsNullOrEmpty(_createSplashError) ? Visibility.Collapsed : Visibility.Visible;
 
-        // Name validation
         private string _createNameError = string.Empty;
         public string CreateNameError
         {
@@ -179,8 +170,6 @@ namespace Editor.Components.Lobby
             string.IsNullOrEmpty(_createLogoError) &&
             string.IsNullOrEmpty(_createSplashError) &&
             !_isCreatingProject;
-
-        // ── Constructor ────────────────────────────────────────────────────────
 
         public LobbyView()
         {
@@ -228,8 +217,6 @@ namespace Editor.Components.Lobby
 
             OnPropertyChanged(nameof(CanCreate));
         }
-
-        // ── Create tab handlers ────────────────────────────────────────────────
 
         private void BrowseLogo_Click(object sender, RoutedEventArgs e)
         {
@@ -311,7 +298,6 @@ namespace Editor.Components.Lobby
                 CreateSplashError = $"Could not read image: {ex.Message}";
             }
         }
-
         private async void CreateProject_Click(object sender, RoutedEventArgs e)
         {
             _isCreatingProject = true;
@@ -437,7 +423,9 @@ namespace Editor.Components.Lobby
                     await Task.Yield();
                 }
 
+                System.Diagnostics.Debug.WriteLine("[HibouEngine] STEP: new MainWindow()");
                 var main = new MainWindow();
+                System.Diagnostics.Debug.WriteLine("[HibouEngine] STEP: MainWindow created OK");
 
                 if (showStages)
                 {
@@ -447,7 +435,11 @@ namespace Editor.Components.Lobby
 
                 // Show first: BuildWindowCore runs here, which calls InitializeGameEngine.
                 // Everything that touches the engine must come after this line.
+                System.Diagnostics.Debug.WriteLine("[HibouEngine] STEP: main.Show()");
                 main.Show();
+                System.Diagnostics.Debug.WriteLine("[HibouEngine] STEP: main.Show() returned — calling InitializeViewport");
+                main.InitializeViewport();
+                System.Diagnostics.Debug.WriteLine("[HibouEngine] STEP: InitializeViewport OK");
                 Application.Current.MainWindow = main;
 
                 if (showStages)
@@ -456,12 +448,15 @@ namespace Editor.Components.Lobby
                     await Task.Yield();
                 }
 
+                System.Diagnostics.Debug.WriteLine("[HibouEngine] STEP: AssetBrowser.Populate");
                 main.AssetBrowser.Populate(project.ProjectDirectory);
+                System.Diagnostics.Debug.WriteLine("[HibouEngine] STEP: AssetBrowser.Populate OK");
 
                 splash.UpdateProgress(100, "Ready!");
                 await Task.Delay(400);
 
                 // Close splash then lobby; LoadDefaultLevel after the engine is live
+                System.Diagnostics.Debug.WriteLine("[HibouEngine] STEP: closing splash and lobby");
                 splash.Close();
                 Window.GetWindow(this)?.Close();
 

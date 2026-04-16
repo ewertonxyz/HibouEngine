@@ -30,6 +30,11 @@ namespace Engine::Graphics::OpenGL
     bool OpenGLManager::Initialize(HWND windowHandle)
     {
         deviceContext = GetDC(windowHandle);
+        if (!deviceContext)
+        {
+            OutputDebugStringA("[HibouEngine] OpenGLManager: GetDC failed\n");
+            return false;
+        }
 
         PIXELFORMATDESCRIPTOR pixelFormatDescriptor = {};
         pixelFormatDescriptor.nSize = sizeof(PIXELFORMATDESCRIPTOR);
@@ -41,15 +46,32 @@ namespace Engine::Graphics::OpenGL
         pixelFormatDescriptor.cStencilBits = 8;
 
         int pixelFormat = ChoosePixelFormat(deviceContext, &pixelFormatDescriptor);
-        SetPixelFormat(deviceContext, pixelFormat, &pixelFormatDescriptor);
+        if (!pixelFormat || !SetPixelFormat(deviceContext, pixelFormat, &pixelFormatDescriptor))
+        {
+            OutputDebugStringA("[HibouEngine] OpenGLManager: ChoosePixelFormat/SetPixelFormat failed\n");
+            return false;
+        }
 
         renderContext = wglCreateContext(deviceContext);
-        wglMakeCurrent(deviceContext, renderContext);
+        if (!renderContext)
+        {
+            OutputDebugStringA("[HibouEngine] OpenGLManager: wglCreateContext failed\n");
+            return false;
+        }
 
-        gladLoadGLLoader((GLADloadproc)GetOpenGLFunctionAddress);
+        if (!wglMakeCurrent(deviceContext, renderContext))
+        {
+            OutputDebugStringA("[HibouEngine] OpenGLManager: wglMakeCurrent failed\n");
+            return false;
+        }
+
+        if (!gladLoadGLLoader((GLADloadproc)GetOpenGLFunctionAddress))
+        {
+            OutputDebugStringA("[HibouEngine] OpenGLManager: gladLoadGLLoader failed — no valid OpenGL context\n");
+            return false;
+        }
 
         Engine::Graphics::OpenGL::Core::GraphicsDevice::Initialize();
-
         return true;
     }
 

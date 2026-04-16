@@ -115,8 +115,8 @@ namespace Editor.Projects
                         {
                             Transform = new
                             {
-                                position = new float[] { 0f, 150f, -350f },
-                                rotationEulerDeg = new float[] { -10f, 0f, 0f },
+                                position = new float[] { 0f, 100f, 0f },
+                                rotationEulerDeg = new float[] { 10f, 90f, 0f },
                                 scale = new float[] { 1f, 1f, 1f }
                             },
                             Camera = new

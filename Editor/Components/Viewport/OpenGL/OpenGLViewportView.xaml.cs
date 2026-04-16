@@ -8,5 +8,7 @@ namespace Editor.Components.Viewport.OpenGL
         {
             InitializeComponent();
         }
+
+        public void InitializeEngine() => _nativeViewport.InitializeEngine();
     }
 }

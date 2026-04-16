@@ -12,6 +12,7 @@
 
         <!-- Asset Properties panel — visible once an asset is selected -->
         <ScrollViewer x:Name="AssetPropertiesScroll"
+                      DataContext="{x:Null}"
                       Visibility="Collapsed"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Disabled">
@@ -180,6 +181,7 @@
 
         <!-- Properties panel — visible once an entity is selected -->
         <ScrollViewer x:Name="PropertiesScroll"
+                      DataContext="{x:Null}"
                       Visibility="Collapsed"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Disabled">

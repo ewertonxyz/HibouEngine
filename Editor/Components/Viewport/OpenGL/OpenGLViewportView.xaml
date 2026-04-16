@@ -4,6 +4,6 @@
              xmlns:opengl="clr-namespace:Editor.Views">
 
     <Grid>
-        <opengl:OpenGLViewport />
+        <opengl:OpenGLViewport x:Name="_nativeViewport" />
     </Grid>
 </UserControl>

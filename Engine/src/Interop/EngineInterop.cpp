@@ -23,12 +23,20 @@ extern "C"
         HWND nativeWindowHandle = static_cast<HWND>(windowHandle);
 
         Engine::Interop::ActiveGraphicsManager = new Engine::Graphics::GraphicsManager();
-        Engine::Interop::ActiveGraphicsManager->Initialize("OpenGL", nativeWindowHandle);
+        if (!Engine::Interop::ActiveGraphicsManager->Initialize("OpenGL", nativeWindowHandle))
+        {
+            OutputDebugStringA("[HibouEngine] InitializeGameEngine: GraphicsManager::Initialize failed\n");
+            return;
+        }
+
+        OutputDebugStringA("[HibouEngine] InitializeGameEngine: OpenGL context OK\n");
 
         Engine::Interop::ActiveScene = new Engine::Entities::Scene();
         Engine::Interop::ActiveRenderer = new Engine::Graphics::Renderer();
 
         Engine::Interop::ActiveRenderer->Initialize();
+
+        OutputDebugStringA("[HibouEngine] InitializeGameEngine: complete\n");
     }
 
     __declspec(dllexport) void ClearScene()
@@ -117,7 +125,8 @@ extern "C"
             return;
         Engine::Interop::ActiveViewportWidth  = width;
         Engine::Interop::ActiveViewportHeight = height;
-        glViewport(0, 0, width, height);
+        if (Engine::Interop::ActiveGraphicsManager != nullptr)
+            glViewport(0, 0, width, height);
     }
 
     __declspec(dllexport) void RenderEngineFrame()

@@ -39,6 +39,7 @@ public class EngineProject : Project
         if (targetInstance.Optimization == Optimization.Debug)
         {
             configurationInstance.Options.Add(Options.Vc.Compiler.RuntimeLibrary.MultiThreadedDebug);
+            configurationInstance.Defines.Add("HE_MEMORY_AUDIT");
         }
         else
         {
@@ -124,6 +125,8 @@ public class EditorProject : CSharpProject
 
         configurationInstance.ReferencesByNuGetPackage.Add("Nodify", "7.1.0");
         configurationInstance.ReferencesByNuGetPackage.Add("CommunityToolkit.Mvvm", "8.4.0");
+        configurationInstance.ReferencesByNuGetPackage.Add("Dirkster.AvalonDock", "4.72.1");
+        configurationInstance.ReferencesByNuGetPackage.Add("Dirkster.AvalonDock.Themes.VS2013", "4.72.1");
 
         configurationInstance.IncludePaths.Add(@"[project.SourceRootPath]\Interop");
         configurationInstance.IncludePaths.Add(@"[project.SourceRootPath]\Models");
